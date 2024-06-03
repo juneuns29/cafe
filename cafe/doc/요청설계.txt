@@ -1,0 +1,30 @@
+# main page 폼보기 요청
+요청내용 :	/cafe/
+파라미터 :	none
+컨트롤러 :	com.human.home.controller.CafeMain
+처리함수 :	getMain()
+응답문서 :	/WEB-INF/views/main.jsp
+
+요청내용 :	/cafe/main.cafe
+파라미터 :	none
+컨트롤러 :	com.human.cafe.controller.MainController
+처리함수 :	getMain()
+응답문서 :	/WEB-INF/views/main.jsp
+--------------------------------------------------------------------------------------------------
+# 댓글 게시판 관련 요청
+
+# 댓글 게시판 리스트 폼보기 요청
+요청내용 :	/cafe/reboard/reboard.cafe
+파라미터 :	none
+컨트롤러 :	com.human.cafe.controller.Reboard
+처리함수 :	reboardList()
+응답문서 :	/WEB-INF/views/reboard/reboardList.jsp
+
+
+
+--------------------------------------------------------------------------------------------------
+요청내용 :	
+파라미터 :	
+컨트롤러 :	
+처리함수 :	
+응답문서 :	

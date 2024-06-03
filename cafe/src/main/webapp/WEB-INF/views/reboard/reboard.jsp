@@ -1,0 +1,65 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/cafe/css/w3.css" />
+<link rel="stylesheet" type="text/css" href="/cafe/css/user.css" />
+<link rel="stylesheet" href="/cafe/css/font-awesome-4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" src="/cafe/js/jquery-3.7.1.min.js"></script>
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+	<div class="w3-content mxw700">
+		<h1 class="w3-blue w3-padding w3-card-4 w3-center">댓글 게시판</h1>
+		<!-- 버튼 태그 -->
+		<div class="w3-col">
+			<div class="w3-col s3 m1 w3-btn w3-tiny w3-green">Home</div>
+<c:if test="${not empty SID}">
+			<div class="w3-col s3 m1 w3-btn w3-tiny w3-lime">Logout</div>
+</c:if>
+<c:if test="${empty SID}">
+			<div class="w3-col s3 m1 w3-btn w3-tiny w3-blue w3-right">Join</div>
+			<div class="w3-col s3 m1 w3-btn w3-tiny w3-lime w3-right">Login</div>
+</c:if>
+		</div>
+		
+		<!-- 게시글 태그 -->
+		<div class="w3-col w3-margin-top">
+<c:forEach var="DATA" items="${LIST}">
+			<div class="w3-col w3-margin-top"  style="padding-left: ${(DATA.level - 1) * 50}px;">
+				<div class="w3-col w3-card-4">
+					<div class="w3-col" style="width: 100px;">
+						<div class="w3-col imgBox2 pd10">
+							<img src="/cafe/avatar/img_avatar22.png" class="w3-col w3-circle img80">
+						</div>
+						<h6 class="w3-col w3-center mgh0">${DATA.id}</h6>
+					</div>
+					<div class="w3-rest pd10">
+						<div class="w3-col w3-border-bottom" style="padding-bottom: 3px;">
+							<p class="w3-left mgh0" style="font-size: 9pt;">작성일 : ${DATA.sdate}</p>
+							<p class="w3-right mgh0" style="font-size: 9pt;"><i class="fa fa-heart"></i> 좋아요 : ${DATA.goods}</p>
+						</div>
+						<div class="w3-col w3-padding">
+							<pre class="contentBox" style="margin: 0px;">${DATA.body}</pre>
+						</div>
+						<div class="w3-col">
+							<div class="w3-btn w3-tiny w3-orange w3-left" id="d${DATA.bno}">글삭제</div>
+							<div class="w3-btn w3-tiny w3-pink w3-right" id="r${DATA.bno}">댓글쓰기</div>
+						</div>
+					</div>
+				</div>
+			</div>
+</c:forEach>
+			
+		</div>
+	</div>
+</body>
+</html>
