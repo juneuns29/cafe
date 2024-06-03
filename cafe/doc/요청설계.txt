@@ -44,6 +44,14 @@
 처리함수 :	join()
 응답문서 :	/WEB-INF/views/member/login.jsp
 
+# 아이디 체크 요청
+요청내용 :	/cafe/member/idCheck.cafe
+파라미터 :	id
+컨트롤러 :	com.human.cafe.controller.Member
+처리함수 :	idCheck()
+응답문서 :	JSON ]
+					{"result": "OK" || "NO"}
+
 # 회원가입 처리 요청
 요청내용 :	/cafe/member/joinProc.cafe
 파라미터 :	id, pw, name, mail, tel, gen, avatar

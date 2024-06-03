@@ -84,8 +84,6 @@
 
 <c:if test="${not empty SID}">
 			<div class="w3-btn w3-small w3-orange w3-right" id="logout">로그아웃</div>
-			<div class="w3-btn w3-small w3-light-green w3-left" id="idList"> 회원들 </div>
-			<div class="w3-btn w3-small w3-blue w3-left" id="myInfo">myInfo</div>
 </c:if>
 <c:if test="${empty SID}">
 			<div class="w3-btn w3-small w3-blue w3-right" id="join">회원가입</div>

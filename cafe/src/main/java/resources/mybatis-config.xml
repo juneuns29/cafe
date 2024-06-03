@@ -12,6 +12,7 @@
 	
 	<typeAliases>
  		<typeAlias alias="mVO" type="com.human.cafe.vo.MemberVO"/>
+ 		<typeAlias alias="rVO" type="com.human.cafe.vo.ReboardVO"/>
 	</typeAliases>
 
 </configuration>

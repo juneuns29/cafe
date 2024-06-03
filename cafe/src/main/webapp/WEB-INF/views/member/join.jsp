@@ -16,7 +16,58 @@
 </style>
 <script type="text/javascript">
     $(document).ready(function(){
-        
+    	$('.rdo').change(function(){
+            $('#fAvt, #mAvt').stop().slideUp();
+            var tag = $(this).val();
+            if(tag == 'M'){
+                $('#mAvt').removeClass('w3-hide');
+                $('#mAvt').slideDown();
+            } else {
+                $('#fAvt').removeClass('w3-hide');
+                $('#fAvt').slideDown();
+            }
+        });
+    	
+    	$('#reset').click(function(){
+    		document.frm.reset();
+    	});
+    	
+    	$('#home').click(function(){
+    		$(location).attr('href', '/cafe/main.cafe');
+    	});
+    	
+    	// 아이디 체크 버튼 이벤트 처리
+    	$('#chkBtn').click(function(){
+    		var sid = $('#id').val();
+    		if(!sid){
+    			$('#id').focus();
+    			return;
+    		}
+    		
+    		$.ajax({
+    			url: '/cafe/member/idCheck.cafe',
+    			type: 'post',
+    			dataType: 'json',
+    			data: {
+    				id: sid
+    			},
+    			success: function(resp){
+    				if(resp.result == 'NO'){
+    					$('#id').val('');
+    					$('#idmsg').html('# 사용할 수 없는 아이디 입니다. #');
+    					$('#idmsg').removeClass('w3-text-red w3-text-green').addClass('w3-text-red');
+    					$('#idmsg').removeClass('w3-hide');
+    				} else {
+    					$('#idmsg').html('* 사용가능한 아이디 입니다. *');
+    					$('#idmsg').removeClass('w3-text-red w3-text-green').addClass('w3-text-green');
+    					$('#idmsg').removeClass('w3-hide');
+    				}
+    			},
+    			error: function(){
+    				alert('####################');
+    			}
+    		});
+    	});
     });
 </script>
 </head>
@@ -93,7 +144,7 @@
                             <label for="11" class="inblock imgBox">
                                 <img src="/cafe/image/avatar/img_avatar11.png" class="avtimg">
                             </label>
-                            <input type="radio" name="ano" id="11" class="w3-radio avtrdo" value="11" checked>
+                            <input type="radio" name="ano" id="11" class="w3-radio avtrdo" value="11">
                         </div>
                         <div class="inblock avtBox w3-center">
                             <label for="12" class="inblock imgBox">

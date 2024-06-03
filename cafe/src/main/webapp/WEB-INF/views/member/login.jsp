@@ -5,18 +5,41 @@
 <head>
 <title>Son Login</title>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="/css/w3.css">
-<link rel="stylesheet" type="text/css" href="/css/user.css">
-<script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/cafe/css/w3.css">
+<link rel="stylesheet" type="text/css" href="/cafe/css/user.css">
+<script type="text/javascript" src="/cafe/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		$('#login').click(function(){
+			var sid = $('#id').val();
+			if(!sid){
+				$('#id').focus();
+				return;
+			}
+			var spw = $('#pw').val();
+			if(!spw){
+				$('#pw').focus();
+				return;
+			}
+			
+			$('#frm').attr('action', '/cafe/member/loginProc.cafe');
+			$('#frm').attr('method', 'POST');
+			$('#frm').submit();
+		});
 		
+		$('#home').click(function(){
+			$(location).attr('href', '/cafe/main.cafe');
+		});
+		
+		$('#join').click(function(){
+			$(location).attr('href', '/cafe/member/join.cafe');
+		});
 	});
 </script>
 </head>
 <body>
     <form class="w3-content w3-center mxw700" id="frm" name="frm">
-        <h1 class="w3-pink w3-padding w3-round-large w3-card-4">Son Login</h1>
+        <h1 class="w3-pink w3-padding w3-round-large w3-card-4">Cafe Login</h1>
         <div class="w3-container w3-padding w3-margin-top w3-round-large w3-card-4 pdh30">
             <div class="w3-col w3-padding">
                 <label for="id" class="w3-col m3 w3-right-align w3-text-gray lbl">ID : </label>

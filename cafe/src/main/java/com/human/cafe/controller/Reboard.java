@@ -29,7 +29,6 @@ public class Reboard {
 	
 	@RequestMapping("/reboard.cafe")
 	public ModelAndView reboardList(HttpSession session, ModelAndView mv, RedirectView rv, PageUtil page) {
-		session.setAttribute("SID", "jennie");
 		mv.setViewName("reboard/reboard");
 		return mv;
 	}
