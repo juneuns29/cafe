@@ -13,7 +13,33 @@
 
 </style>
 <script type="text/javascript">
-
+	$(function(){
+		$('.tbtn').click(function(){
+			var path = '/cafe/main.cafe';
+			
+			var bid = $(this).attr('id');
+			switch(bid){
+			case 'home':
+				path = '/cafe/main.cafe';
+				break;
+			case 'logout':
+				path = '/cafe/member/logout.cafe';
+				break;
+			case 'login':
+				path = '/cafe/member/login.cafe';
+				break;
+			case 'join':
+				path = '/cafe/member/join.cafe';
+				break;
+			case 'write':
+				path = '/cafe/reboard/reboardWrite.cafe';
+				break;
+			}
+			
+			$(location).attr('href', path);
+		});
+		
+	});
 </script>
 </head>
 <body>
@@ -21,13 +47,14 @@
 		<h1 class="w3-blue w3-padding w3-card-4 w3-center">댓글 게시판</h1>
 		<!-- 버튼 태그 -->
 		<div class="w3-col">
-			<div class="w3-col s3 m1 w3-btn w3-tiny w3-green">Home</div>
+			<div class="w3-col s3 m1 w3-btn w3-tiny w3-green tbtn" id="home">Home</div>
 <c:if test="${not empty SID}">
-			<div class="w3-col s3 m1 w3-btn w3-tiny w3-lime">Logout</div>
+			<div class="w3-col s3 m1 w3-btn w3-tiny w3-lime tbtn" id="logout">Logout</div>
+			<div class="w3-col s3 m1 w3-btn w3-tiny w3-orange w3-right tbtn" id="write">write</div>
 </c:if>
 <c:if test="${empty SID}">
-			<div class="w3-col s3 m1 w3-btn w3-tiny w3-blue w3-right">Join</div>
-			<div class="w3-col s3 m1 w3-btn w3-tiny w3-lime w3-right">Login</div>
+			<div class="w3-col s3 m1 w3-btn w3-tiny w3-blue tbtn" id="join">Join</div>
+			<div class="w3-col s3 m1 w3-btn w3-tiny w3-lime tbtn" id="login">Login</div>
 </c:if>
 		</div>
 		
