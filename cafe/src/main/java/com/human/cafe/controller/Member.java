@@ -91,4 +91,22 @@ public class Member {
 		}
 		return map;
 	 }
+	
+	/**
+	 * 회원가입 처리요청
+	 */
+	@RequestMapping("/joinProc.cafe")
+	public ModelAndView joinProc(HttpSession session, ModelAndView mv, RedirectView rv, MemberVO mVO) {
+		int cnt = mDao.addMember(mVO);
+		if(cnt == 1) {
+			// 성공한 경우
+			rv.setUrl("/cafe/main.cafe");
+			session.setAttribute("SID", mVO.getId());
+		} else {
+			// 실패한 경우
+			rv.setUrl("/cafe/member/join.cafe");
+		}
+		mv.setView(rv);
+		return mv;
+	}
 }

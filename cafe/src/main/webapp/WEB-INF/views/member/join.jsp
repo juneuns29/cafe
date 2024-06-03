@@ -62,11 +62,68 @@
     					$('#idmsg').removeClass('w3-text-red w3-text-green').addClass('w3-text-green');
     					$('#idmsg').removeClass('w3-hide');
     				}
-    			},
-    			error: function(){
-    				alert('####################');
     			}
     		});
+    	});
+    	
+    	$('#pw').keyup(function(){
+    		var spw = $(this).val();
+    		// 정규표현식 검사...
+    		
+    	});
+    	
+    	$('#repw').keyup(function(){
+   			$('#repwmsg').removeClass('w3-hide').addClass('w3-hide');
+    		var spw = $('#pw').val();
+    		
+    		var respw = $(this).val();
+    		if(spw != respw){
+    			$('#repwmsg').html('# 비밀번호가 일치하지 않습니다. #');
+    			$('#repwmsg').removeClass('w3-text-red w3-text-blue').addClass('w3-text-red');
+    			$('#repwmsg').removeClass('w3-hide');
+    		} else {
+    			$('#repwmsg').html('* 비밀번호가 일치합니다. *');
+    			$('#repwmsg').removeClass('w3-text-red w3-text-blue').addClass('w3-text-blue');
+    			$('#repwmsg').removeClass('w3-hide');
+    		}
+    	});
+    	
+    	$('#join').click(function(){
+    		var sname = $('#name').val();
+    		if(!sname){
+    			$('#name').focus();
+    			return;
+    		}
+    		var sid = $('#id').val();
+    		if(!sid){
+    			$('#id').focus();
+    			return;
+    		}
+    		var spw = $('#pw').val();
+    		if(!spw){
+    			$('#pw').focus();
+    			return;
+    		}
+    		var smail = $('#mail').val();
+    		if(!smail){
+    			$('#mail').focus();
+    			return;
+    		}
+    		var stel = $('#tel').val();
+    		if(!stel){
+    			$('#tel').focus();
+    			return;
+    		}
+    		var sgen = document.frm.gen.value;
+    		if(!sgen){
+    			return;
+    		}
+    		var sano = document.frm.ano.value;
+    		if(!sano){
+    			return;
+    		}
+    		
+    		$('#frm').submit();
     	});
     });
 </script>
@@ -74,7 +131,7 @@
 <body>
     <div class="w3-content mxw650">
         <h1 class="w3-blue w3-center w3-padding w3-card-4">회원가입</h1>
-        <form method="GET" action="/member/joinProc.son" name="frm" id="frm" 
+        <form method="POST" action="/cafe/member/joinProc.cafe" name="frm" id="frm" 
                 class="w3-col w3-light-grey mgt20 w3-card-4 w3-padding pdh30">
             <div class="w3-col w3-padding">
                 <label for="name" class="w3-col m3 lbl w3-text-gray w3-right-align">이 름 : </label>
@@ -89,7 +146,7 @@
                             placeholder="아이디를 입력하세요."
                             class="w3-col m9 w3-input w3-border">
                     <div class="w3-button w3-blue w3-right" id="chkBtn">check</div>
-                    <small class="w3-col s9 w3-hide" id="idmsg">* 사용가능한 아이디입니다.</small>
+                    <small class="w3-col s9 w3-hide w3-center" id="idmsg">* 사용가능한 아이디입니다.</small>
                 </div>
             </div>
             <div class="w3-col w3-padding">
@@ -98,7 +155,7 @@
                     <input type="password" name="pw" id="pw" 
                             placeholder="비밀번호를 입력하세요."
                             class="w3-col w3-input w3-border">
-                    <small class="w3-col w3-hide" id="pwmsg"># 형식이 맞지 않습니다.</small>
+                    <small class="w3-col w3-hide w3-center" id="pwmsg"># 형식이 맞지 않습니다.</small>
                 </div>
             </div>
             <div class="w3-col w3-padding">
@@ -107,7 +164,7 @@
                     <input type="password" id="repw" 
                             placeholder="비밀번호 확인 입력!"
                             class="w3-col w3-input w3-border">
-                    <small class="w3-col w3-hide" id="repwmsg"># 비밀번호가 일치하지 않습니다.</small>
+                    <small class="w3-col w3-hide w3-center" id="repwmsg"># 비밀번호가 일치하지 않습니다.</small>
                 </div>
             </div>
             <div class="w3-col w3-padding">

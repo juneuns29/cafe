@@ -31,7 +31,7 @@
 		</div>
 		
 		<form method="POST" action="" id="frm" class="w3-col w3-margin-top" >
-			<input type="hidden" name="nowPage" value="${NOWPAGE}">
+			<input type="hidden" name="nowPage" value="${DATA.nowPage}">
 <c:if test="${DATA.regroup ne 0}">
 			<input type="hidden" name="upno" value="${DATA.upno}">
 			<input type="hidden" name="regroup" value="${DATA.regroup}">

@@ -16,4 +16,8 @@ public class MemberDao {
 	public int idCheck(String id) {
 		return session.selectOne("mSQL.idCheck", id);
 	}
+	
+	public int addMember(MemberVO mVO) {
+		return session.insert("mSQL.addMember", mVO);
+	}
 }
