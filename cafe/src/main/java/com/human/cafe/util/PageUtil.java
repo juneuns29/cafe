@@ -1,7 +1,7 @@
 package com.human.cafe.util;
 
 public class PageUtil {
-	private int nowPage;	// 현재 페이지
+	private int nowPage = 1;	// 현재 페이지
 	private int totalCount; // 총 게시물 갯수
 	
 	private int pageRow; 	// 한페이지에 보여줄 게시글 갯수

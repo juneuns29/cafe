@@ -3,6 +3,44 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="rSQL">
+	
+	<!-- 총 게시글 수 조회  -->
+	<select id="getTotal" resultType="int">
+		SELECT
+		    COUNT(*)
+		FROM
+		    reboard
+		WHERE
+		    reisshow = 'Y'
+	</select>
+	
+	<!-- 게시글 리스트 조회 -->
+	<select id="getList" resultType="rVO" parameterType="page">
+		SELECT
+		    rno, bno, id, body, wdate, goods, upno, regroup, "level", savename
+		FROM
+		    (
+		        SELECT
+		            ROWNUM rno, bno, id, body, wdate, goods, upno, regroup, "level", savename
+		        FROM
+		            (
+		                SELECT
+		                    rebno bno, writer id, body, wdate, goods, reupno upno,
+		                    regroup, relevel "level", filename savename
+		                FROM
+		                    reboard, member, avatar
+		                WHERE
+		                    writer = id
+		                    AND avatar = ano
+		                    AND reisshow = 'Y'
+		                ORDER BY
+		                    regroup DESC, upno
+		            )
+		    )
+		WHERE
+		    rno BETWEEN #{startRno} AND #{endRno}
+	</select>
+	
 	<insert id="addBoard" parameterType="rVO">
 		<selectKey keyProperty="bno" resultType="int" order="BEFORE">
 			SELECT rebrdSeq.NEXTVAL FROM dual

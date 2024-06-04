@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class ReboardVO {
 	private int bno, rno, regroup, cnt, goods, level, nowPage, startRno, endRno;
-	private String id, body, upno, sdate;
+	private String id, body, upno, savename, sdate;
 	private Date wdate;
 	public int getNowPage() {
 		return nowPage;
@@ -79,15 +79,21 @@ public class ReboardVO {
 	public void setUpno(String upno) {
 		this.upno = upno;
 	}
+	public String getSavename() {
+		return savename;
+	}
+	public void setSavename(String savename) {
+		this.savename = savename;
+	}
 	public String getSdate() {
 		return sdate;
 	}
 	public void setSdate(String sdate) {
 		this.sdate = sdate;
 	}
-	public String setSdate() {
+	public void setSdate() {
 		SimpleDateFormat form = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		return form.format(wdate);
+		sdate = form.format(wdate);
 	}
 	public Date getWdate() {
 		return wdate;
@@ -99,7 +105,8 @@ public class ReboardVO {
 	@Override
 	public String toString() {
 		return "ReboardVO [bno=" + bno + ", rno=" + rno + ", regroup=" + regroup + ", cnt=" + cnt + ", goods=" + goods
-				+ ", level=" + level + ", id=" + id + ", body=" + body + ", upno=" + upno + ", sdate=" + sdate
+				+ ", level=" + level + ", nowPage=" + nowPage + ", startRno=" + startRno + ", endRno=" + endRno
+				+ ", id=" + id + ", body=" + body + ", upno=" + upno + ", savename=" + savename + ", sdate=" + sdate
 				+ ", wdate=" + wdate + "]";
 	}
 }

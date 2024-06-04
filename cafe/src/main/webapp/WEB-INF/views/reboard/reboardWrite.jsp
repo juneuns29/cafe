@@ -42,7 +42,7 @@
 				$('#body').focus();
 				return;
 			}
-			$('#frm').attr('action', '/cafe/reboard/reboardProc.cafe');
+			$('#frm').attr('action', '/cafe/reboard/reboardWriteProc.cafe');
 			$('#frm').submit();
 		});
 	});
@@ -82,7 +82,7 @@
 					<div class="w3-col">
 						<div class="w3-col m2"><p> </p></div>
 						<div class="w3-col m9">
-							<textarea id="body" class="w3-col w3-input w3-border" rows="5"
+							<textarea id="body" name="body" class="w3-col w3-input w3-border" rows="5"
 										style="resize: none;" placeholder="내용을 작성하세요!"></textarea>
 						</div>
 					</div>

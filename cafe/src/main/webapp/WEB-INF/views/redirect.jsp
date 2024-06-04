@@ -5,9 +5,9 @@
 <head>
 <title></title>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="/css/w3.css">
-<link rel="stylesheet" type="text/css" href="/css/user.css">
-<script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/cafe/css/w3.css">
+<link rel="stylesheet" type="text/css" href="/cafe/css/user.css">
+<script type="text/javascript" src="/cafe/js/jquery-3.7.1.min.js"></script>
 <style type="text/css">
 
 </style>

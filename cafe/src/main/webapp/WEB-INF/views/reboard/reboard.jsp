@@ -86,8 +86,10 @@
 							<pre class="contentBox" style="margin: 0px;">${DATA.body}</pre>
 						</div>
 						<div class="w3-col">
-							<div class="w3-btn w3-tiny w3-orange w3-left" id="d${DATA.bno}">글삭제</div>
-							<div class="w3-btn w3-tiny w3-pink w3-right" id="r${DATA.bno}">댓글쓰기</div>
+			<c:if test="${SID eq DATA.id}">
+							<div class="w3-btn w3-tiny w3-orange w3-left delete" id="d${DATA.bno}">글삭제</div>
+			</c:if>
+							<div class="w3-btn w3-tiny w3-pink w3-right append" id="r${DATA.bno}">댓글쓰기</div>
 						</div>
 					</div>
 				</div>

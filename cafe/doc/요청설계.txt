@@ -79,6 +79,16 @@
 처리함수 :	reboardWrite()
 응답문서 :	/WEB-INF/views/reboard/reboardWrite.jsp
 
+# 댓글 게시판 글 등록 요청
+요청내용 :	/cafe/reboard/reboardWriteProc.cafe
+파라미터 :	nowPage, id, body [, upno, level, regroup]
+컨트롤러 :	com.human.cafe.controller.Reboard
+처리함수 :	rebaordWirteProc()
+응답문서 :	redirect ]
+				성공 :	/cafe/reboard/reboard.cafe
+				실패 :  /cafe/reboard/reboardWrite.cafe
+
+
 
 --------------------------------------------------------------------------------------------------
 요청내용 :	
