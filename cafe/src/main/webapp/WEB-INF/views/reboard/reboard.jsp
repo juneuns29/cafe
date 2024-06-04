@@ -52,6 +52,10 @@
 		
 		/* 글 삭제 이벤트 처리 */
 		$('.delete').click(function(){
+			var sbno = $(this).attr('id').substring(1);
+			$('#frm').append('<input type="hidden" name="bno" value="' + sbno + '">');
+			$('#frm').attr('action', '/cafe/reboard/delReboard.cafe');
+			$('#frm').submit();
 			
 		});
 		

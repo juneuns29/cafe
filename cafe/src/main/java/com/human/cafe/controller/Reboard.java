@@ -105,14 +105,11 @@ public class Reboard {
 	public ModelAndView delReboard(HttpSession session, ModelAndView mv, 
 											RedirectView rv, ReboardVO rVO) {
 		int cnt = rDao.delReboard(rVO);
-		if(cnt == 0) {
-			// 작업에 실패한 경우
-			
-		} else {
-			// 성공한 경우
-			
-		}
+		String path = "/cafe/reboard/reboard.cafe";
 		
+		mv.addObject("PATH", path);
+		mv.addObject("nowPage", rVO.getNowPage());
+		mv.setViewName("redirect");
 		return mv;
 	}
 }
