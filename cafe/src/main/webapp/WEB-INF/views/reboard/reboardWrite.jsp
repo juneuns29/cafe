@@ -12,7 +12,40 @@
 
 </style>
 <script type="text/javascript">
-
+	$(document).ready(function(){
+		$('#home').click(function(){
+			$(location).attr('href', '/cafe/main.cafe');
+		});
+		$('#login').click(function(){
+			$(location).attr('href', '/cafe/member/login.cafe');
+		});
+		$('#logout').click(function(){
+			$(location).attr('href', '/cafe/member/logout.cafe');
+		});
+		$('#join').click(function(){
+			$(location).attr('href', '/cafe/member/join.cafe');
+		});
+		
+		$('#list').click(function(){
+			$('#frm').attr('action', '/cafe/reboard/reboard.cafe');
+			$('#frm').submit();
+		});
+		
+		$('#reset').click(function(){
+			document.frm.reset();
+		});
+		
+		$('#write').click(function(){
+			var sbody = $('#body').val();
+			if(!sbody){
+				// 내용에 입력된 내용이 없는 경우
+				$('#body').focus();
+				return;
+			}
+			$('#frm').attr('action', '/cafe/reboard/reboardProc.cafe');
+			$('#frm').submit();
+		});
+	});
 </script>
 </head>
 <body>
@@ -30,7 +63,7 @@
 </c:if>
 		</div>
 		
-		<form method="POST" action="" id="frm" class="w3-col w3-margin-top" >
+		<form method="POST" action="" id="frm" name="frm" class="w3-col w3-margin-top" >
 			<input type="hidden" name="nowPage" value="${DATA.nowPage}">
 <c:if test="${DATA.regroup ne 0}">
 			<input type="hidden" name="upno" value="${DATA.upno}">
@@ -38,17 +71,17 @@
 </c:if>
 			<div class="w3-container w3-padding w3-margin-bottom w3-card-4" style="padding: 15px 20px!important;">
 				<div class="w3-col">
-					<label class="w3-col m3 lbl">작성자 : </label>
+					<label class="w3-col w3-right-align w3-text-grey m2 lbl">작성자 : </label>
 					<input type="text" name="id" id="id" value="${SID}" 
-							class="w3-col m8 w3-input" readonly>
+							class="w3-col m9 w3-input" readonly>
 				</div>
-				<div class="w3-col">
+				<div class="w3-col w3-margin-bottom">
 					<div class="w3-col">
-						<label for="body" class="w3-col m3 lbl">내 용 : </label>
+						<label for="body" class="w3-col w3-right-align w3-text-grey m2 lbl">내 용 : </label>
 					</div>
 					<div class="w3-col">
-						<div class="w3-col m3"><p> </p></div>
-						<div class="w3-col m8">
+						<div class="w3-col m2"><p> </p></div>
+						<div class="w3-col m9">
 							<textarea id="body" class="w3-col w3-input w3-border" rows="5"
 										style="resize: none;" placeholder="내용을 작성하세요!"></textarea>
 						</div>

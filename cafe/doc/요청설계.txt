@@ -67,7 +67,7 @@
 
 # 댓글 게시판 리스트 폼보기 요청
 요청내용 :	/cafe/reboard/reboard.cafe
-파라미터 :	none
+파라미터 :	nowPage
 컨트롤러 :	com.human.cafe.controller.Reboard
 처리함수 :	reboardList()
 응답문서 :	/WEB-INF/views/reboard/reboard.jsp
