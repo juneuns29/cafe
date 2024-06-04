@@ -102,4 +102,14 @@
 		WHERE
 		    reupno LIKE '%' || #{bno} || '%'
 	</update>
+	
+	<!-- 좋아요 수 증가 질의명령 -->
+	<update id="addGood" parameterType="int">
+		UPDATE
+		    reboard
+		SET
+		    goods = goods + 1
+		WHERE
+		    rebno = #{bno}
+	</update>
 </mapper>

@@ -66,8 +66,9 @@ public class Reboard {
 	 */
 	@RequestMapping("/reboardRewrite.cafe")
 	public ModelAndView reboardRewrite(HttpSession session, ModelAndView mv, 
-			RedirectView rv, ReboardVO rVO) {
+												RedirectView rv, ReboardVO rVO, PageUtil page) {
 		rVO = rDao.getUpContent(rVO.getBno());
+		rVO.setNowPage(page.getNowPage());
 		mv.addObject("DATA", rVO);
 		mv.setViewName("reboard/reboardWrite");
 		return mv;
@@ -89,10 +90,15 @@ public class Reboard {
 			path = "/cafe/reboard/reboard.cafe";
 		} else {
 			// 실패한 경우
-			path = "/cafe/reboard/reboardWrite.cafe";
+			if(rVO.getLevel() == 0) {
+				path = "/cafe/reboard/reboardWrite.cafe";
+			} else {
+				path = "/cafe/reboard/reboardRewrite.cafe";
+				mv.addObject("BNO", rVO.getBno());
+			}
 		}
 		// 데이터 전달 하고
-		mv.addObject("DATA", rVO);
+		mv.addObject("nowPage", rVO.getNowPage());
 		mv.addObject("PATH", path);
 		mv.setViewName("redirect");
 		return mv;
@@ -109,6 +115,19 @@ public class Reboard {
 		
 		mv.addObject("PATH", path);
 		mv.addObject("nowPage", rVO.getNowPage());
+		mv.setViewName("redirect");
+		return mv;
+	}
+	
+	/**
+	 * 좋아요 수 증가 요청 처리함수
+	 */
+	@RequestMapping("/addGood.cafe")
+	public ModelAndView addGood(HttpSession session, ModelAndView mv, 
+											RedirectView rv, ReboardVO rVO) {
+		rDao.addGood(rVO.getBno());
+		mv.addObject("nowPage", rVO.getNowPage());
+		mv.addObject("PATH", "/cafe/reboard/reboard.cafe");
 		mv.setViewName("redirect");
 		return mv;
 	}

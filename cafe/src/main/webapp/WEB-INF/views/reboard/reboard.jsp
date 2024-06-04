@@ -10,7 +10,9 @@
 <link rel="stylesheet" href="/cafe/css/font-awesome-4.7.0/css/font-awesome.min.css">
 <script type="text/javascript" src="/cafe/js/jquery-3.7.1.min.js"></script>
 <style type="text/css">
-
+	.goods {
+		cursor: pointer;
+	}
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -67,12 +69,22 @@
 			$('#frm').attr('action', '/cafe/reboard/reboardRewrite.cafe');
 			$('#frm').submit();
 		});
+		
+		/* 좋아요 클릭이벤트 */
+		$('i.goods').click(function(){
+			// 해당 태그의 글번호 꺼내온다.
+			var sbno = $(this).attr('id').substring(1);
+			$('#frm').append('<input type="hidden" name="bno" value="' + sbno + '">');
+			$('#frm').attr('action', '/cafe/reboard/addGood.cafe');
+			$('#frm').submit();
+		});
 	});
 </script>
 </head>
 <body>
 	<form method="POST" id="frm" name="frm">
 		<input type="hidden" name="nowPage" id="nowPage" value="${PAGE.nowPage}">
+		<input type="hidden" name="id" value="${SID}">
 	</form>
 	
 	<div class="w3-content mxw700">
@@ -105,7 +117,11 @@
 					<div class="w3-rest pd10 pdh20">
 						<div class="w3-col w3-border-bottom" style="padding-bottom: 3px;">
 							<p class="w3-left mgh0" style="font-size: 9pt;">작성일 : ${DATA.sdate}</p>
-							<p class="w3-right mgh0" style="font-size: 9pt;"><i class="fa fa-heart"></i> 좋아요 : ${DATA.goods}</p>
+							<p class="w3-right mgh0" style="font-size: 9pt;">
+								<i class="fa fa-heart w3-text-pink goods" id="g${DATA.bno}"></i> 
+								<span>좋아요 : </span>
+								<span>${DATA.goods}</span>
+							</p>
 						</div>
 						<div class="w3-col w3-padding">
 							<pre class="contentBox" style="margin: 0px;">${DATA.body}</pre>

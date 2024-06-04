@@ -171,7 +171,13 @@ where
 
 commit;
 
-
+UPDATE
+    reboard
+SET
+    goods = goods + 1
+WHERE
+    rebno = 1003
+;
 
 
 

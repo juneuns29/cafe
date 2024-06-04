@@ -103,7 +103,13 @@
 응답문서 :	redirect ] 
 					/cafe/reboard/reboard.cafe
 				
-
+# 좋아요 수 증가 요청
+요청내용 :	/cafe/reboard/addGood.cafe
+파라미터 :	nowPage, bno
+컨트롤러 :	com.human.cafe.controller.Reboard
+처리함수 :	addGood()
+응답문서 :	redirect ]
+					/cafe/reboard/reboard.cafe
 
 
 --------------------------------------------------------------------------------------------------
