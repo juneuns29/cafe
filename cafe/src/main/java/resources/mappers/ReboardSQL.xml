@@ -19,7 +19,7 @@
 			<if test="regroup neq 0">
 			    #{regroup},
 			</if>
-			    #{level + 1}
+			    #{level} + 1
 		)
 	</insert>
 </mapper>
