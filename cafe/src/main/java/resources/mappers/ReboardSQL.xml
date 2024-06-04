@@ -12,15 +12,14 @@
 		    	rebno, writer, body, reupno, regroup, relevel
 		    )
 		VALUES(
-		    #{bno}, #{id}, #{body}, 
-		    #{UPNO}||#{bno}, 
-		<if test="regroup eq 0">
-		    #{bno},
-		</if>
-		<if test="regroup neq 0">
-		    #{regroup},
-		</if>
-		    #{level + 1}
+		    #{bno}, #{id}, #{body}, #{upno}||#{bno}, 
+			<if test="regroup eq 0">
+			    #{bno},
+			</if>
+			<if test="regroup neq 0">
+			    #{regroup},
+			</if>
+			    #{level + 1}
 		)
 	</insert>
 </mapper>
