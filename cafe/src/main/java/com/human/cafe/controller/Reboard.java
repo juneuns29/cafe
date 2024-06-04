@@ -49,10 +49,25 @@ public class Reboard {
 		return mv;
 	}
 	
+	/**
+	 * 게시글 작성 폼보기 요청
+	 */
 	@RequestMapping("/reboardWrite.cafe")
 	public ModelAndView reboardWrite(HttpSession session, ModelAndView mv, 
 											RedirectView rv, ReboardVO rVO) {
 		
+		mv.addObject("DATA", rVO);
+		mv.setViewName("reboard/reboardWrite");
+		return mv;
+	}
+	
+	/**
+	 * 댓글 쓰기 폼보기 요청 처리함수
+	 */
+	@RequestMapping("/reboardRewrite.cafe")
+	public ModelAndView reboardRewrite(HttpSession session, ModelAndView mv, 
+			RedirectView rv, ReboardVO rVO) {
+		rVO = rDao.getUpContent(rVO.getBno());
 		mv.addObject("DATA", rVO);
 		mv.setViewName("reboard/reboardWrite");
 		return mv;
@@ -80,6 +95,24 @@ public class Reboard {
 		mv.addObject("DATA", rVO);
 		mv.addObject("PATH", path);
 		mv.setViewName("redirect");
+		return mv;
+	}
+	
+	/**
+	 * 게시글 삭제 요청 처리 함수
+	 */
+	@RequestMapping("/delReboard.cafe")
+	public ModelAndView delReboard(HttpSession session, ModelAndView mv, 
+											RedirectView rv, ReboardVO rVO) {
+		int cnt = rDao.delReboard(rVO);
+		if(cnt == 0) {
+			// 작업에 실패한 경우
+			
+		} else {
+			// 성공한 경우
+			
+		}
+		
 		return mv;
 	}
 }

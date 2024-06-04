@@ -20,6 +20,13 @@ public class ReboardDao {
 	}
 	
 	/**
+	 * 상위 글 정보 조회 전담 처리함수
+	 */
+	public ReboardVO getUpContent(int bno) {
+		return session.selectOne("rSQL.upContent", bno);
+	}
+	
+	/**
 	 * 총 게시글 수 조회 전담 처리함수
 	 */
 	public int getTotal() {
@@ -31,5 +38,12 @@ public class ReboardDao {
 	 */
 	public List getList(PageUtil page) {
 		return session.selectList("rSQL.getList", page);
+	}
+	
+	/**
+	 * 게시글 삭제 전담 처리함수
+	 */
+	public int delReboard(ReboardVO rVO) {
+		return session.update("rSQL.delReboard", rVO);
 	}
 }

@@ -41,6 +41,17 @@
 		    rno BETWEEN #{startRno} AND #{endRno}
 	</select>
 	
+	<!-- 상위글 정보조회 질의명령 -->
+	<select id="upContent" resultType="rVO" parameterType="int">
+		SELECT
+			rebno bno, reupno upno, regroup, relevel "level"
+		FROM
+			reboard
+		WHERE
+			rebno = #{bno}
+	</select>
+	
+	<!-- 게시글 입력 질의명령 -->
 	<insert id="addBoard" parameterType="rVO">
 		<selectKey keyProperty="bno" resultType="int" order="BEFORE">
 			SELECT rebrdSeq.NEXTVAL FROM dual
@@ -66,4 +77,29 @@
 			    #{level} + 1
 		)
 	</insert>
+	
+	<!-- 댓글 입력 질의명령 -->
+	<insert id="addReborad" parameterType="rVO">
+		<selectKey keyProperty="bno" resultType="int" order="BEFORE">
+			SELECT rebrdSeq.NEXTVAL FROM dual
+		</selectKey>
+		INSERT INTO
+		    reboard(rebno, writer, body, reupno, regroup, relevel)
+		select
+		    #{bno}, #{id}, #{body}, reupno || '#' || #{bno}, regroup, relevel + 1
+		from
+		    reboard
+		where
+		    rebno = #{upBno}
+	</insert>
+	
+	<!-- 게시글 삭제 질의명령 -->
+	<update id="delReboard" parameterType="rVO">
+		UPDATE
+		    reboard
+		SET
+		    reisshow = 'N'
+		WHERE
+		    reupno LIKE '%' || #{bno} || '%'
+	</update>
 </mapper>

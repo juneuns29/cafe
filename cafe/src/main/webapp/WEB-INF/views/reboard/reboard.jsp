@@ -42,12 +42,33 @@
 			$('#frm').submit();
 		});
 		
+		/* 페이징 처리 */
+		$('.pageBtn').click(function(){
+			var spno = $(this).attr('id');
+			$('#nowPage').val(spno);
+			$('#frm').attr('action', '/cafe/reboard/reboard.cafe');
+			$('#frm').submit();
+		});
+		
+		/* 글 삭제 이벤트 처리 */
+		$('.delete').click(function(){
+			
+		});
+		
+		/* 댓글 쓰기 이벤트 처리 */
+		$('.append').click(function(){
+			var sbno = $(this).attr('id').substring(1);
+			
+			$('#frm').append('<input type="hidden" name="bno" value="' + sbno + '">');
+			$('#frm').attr('action', '/cafe/reboard/reboardRewrite.cafe');
+			$('#frm').submit();
+		});
 	});
 </script>
 </head>
 <body>
 	<form method="POST" id="frm" name="frm">
-		<input type="hidden" name="nowPage" value="${PAGE.nowPage}">
+		<input type="hidden" name="nowPage" id="nowPage" value="${PAGE.nowPage}">
 	</form>
 	
 	<div class="w3-content mxw700">
@@ -73,11 +94,11 @@
 				<div class="w3-col w3-card-4">
 					<div class="w3-col" style="width: 100px;">
 						<div class="w3-col imgBox2 pd10">
-							<img src="/cafe/avatar/img_avatar22.png" class="w3-col w3-circle img80">
+							<img src="/cafe/avatar/${DATA.savename}" class="w3-col w3-circle img80">
 						</div>
 						<h6 class="w3-col w3-center mgh0">${DATA.id}</h6>
 					</div>
-					<div class="w3-rest pd10">
+					<div class="w3-rest pd10 pdh20">
 						<div class="w3-col w3-border-bottom" style="padding-bottom: 3px;">
 							<p class="w3-left mgh0" style="font-size: 9pt;">작성일 : ${DATA.sdate}</p>
 							<p class="w3-right mgh0" style="font-size: 9pt;"><i class="fa fa-heart"></i> 좋아요 : ${DATA.goods}</p>
@@ -89,7 +110,9 @@
 			<c:if test="${SID eq DATA.id}">
 							<div class="w3-btn w3-tiny w3-orange w3-left delete" id="d${DATA.bno}">글삭제</div>
 			</c:if>
+			<c:if test="${not empty SID and DATA.level lt 3}">
 							<div class="w3-btn w3-tiny w3-pink w3-right append" id="r${DATA.bno}">댓글쓰기</div>
+			</c:if>
 						</div>
 					</div>
 				</div>
@@ -110,8 +133,7 @@
 </c:if>
 <c:forEach var="pno" begin="${PAGE.startPage}" end="${PAGE.endPage}">
 	<c:if test="${PAGE.nowPage eq pno}"><!-- 현재 보고있는 페이지인 경우 -->
-				<span class="w3-bar-item w3-btn w3-pink w3-hover-blue pageBtn" 
-																id="${pno}">${pno}</span>
+				<span class="w3-bar-item w3-pink" id="${pno}">${pno}</span>
 	</c:if>
 	<c:if test="${PAGE.nowPage ne pno}">
 				<span class="w3-bar-item w3-btn w3-hover-blue pageBtn" 

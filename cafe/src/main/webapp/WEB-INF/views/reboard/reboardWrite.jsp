@@ -68,6 +68,7 @@
 <c:if test="${DATA.regroup ne 0}">
 			<input type="hidden" name="upno" value="${DATA.upno}">
 			<input type="hidden" name="regroup" value="${DATA.regroup}">
+			<input type="hidden" name="level" value="${DATA.level}">
 </c:if>
 			<div class="w3-container w3-padding w3-margin-bottom w3-card-4" style="padding: 15px 20px!important;">
 				<div class="w3-col">

@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ReboardVO {
-	private int bno, rno, regroup, cnt, goods, level, nowPage, startRno, endRno;
+	private int bno, rno, regroup, upBno, cnt, goods, level, nowPage, startRno, endRno;
 	private String id, body, upno, savename, sdate;
 	private Date wdate;
 	public int getNowPage() {
@@ -42,6 +42,12 @@ public class ReboardVO {
 	}
 	public void setRegroup(int regroup) {
 		this.regroup = regroup;
+	}
+	public int getUpBno() {
+		return upBno;
+	}
+	public void setUpBno(int upBno) {
+		this.upBno = upBno;
 	}
 	public int getCnt() {
 		return cnt;

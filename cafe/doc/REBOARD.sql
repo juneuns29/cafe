@@ -81,3 +81,106 @@ VALUES(
 </if>
     #{level + 1}
 );
+
+
+-- 리스트 조회 질의명령
+SELECT
+    rno, bno, id, body, wdate, goods, upno, regroup, "level", savename
+FROM
+    (
+        SELECT
+            ROWNUM rno, bno, id, body, wdate, goods, upno, regroup, "level", savename
+        FROM
+            (
+                SELECT
+                    rebno bno, writer id, body, wdate, goods, reupno upno,
+                    regroup, relevel "level", filename savename
+                FROM
+                    reboard, member, avatar
+                WHERE
+                    writer = id
+                    AND avatar = ano
+                    AND reisshow = 'Y'
+                ORDER BY
+--                    regroup DESC, 
+                    SUBSTR(upno || '#', 2, INSTR(upno || '#', '#', 2) - 1),
+                    upno
+            )
+    )
+WHERE
+    rno BETWEEN 1 AND 3
+;
+
+
+SELECT
+    SUBSTR(reupno || '#', 2, INSTR(reupno || '#', '#', 2) - 2)
+FROM
+    reboard
+;
+
+SELECT
+    COUNT(*) CNT
+FROM
+    reboard
+WHERE
+    reisshow = 'Y'
+;
+
+-- 글 삭제 질의명령
+UPDATE
+    reboard
+SET
+    reisshow = 'N'
+WHERE
+--    reupno LIKE '#1004%'
+    reupno LIKE '%' || #{bno} || '%'
+;
+
+selectKey
+
+INSERT INTO
+    reboard(rebno, writer, body, reupno, regroup, relevel)
+select
+    1005, 'chopper', '저두요~~!', reupno || '#' || 1005, regroup, relevel + 1
+from
+    reboard
+where
+    rebno = 1004
+;
+
+
+INSERT INTO
+    reboard(rebno, writer, body, reupno, regroup, relevel)
+select
+    1006, 'ania', '아냐도 축하~~!', reupno || '#' || 1006, regroup, relevel + 1
+from
+    reboard
+where
+    rebno = 1004
+;
+
+INSERT INTO
+    reboard(rebno, writer, body, reupno, regroup, relevel)
+select
+    1007, 'bond', '멍멍~~!', reupno || '#' || 1007, regroup, relevel + 1
+from
+    reboard
+where
+    rebno = 1006
+;
+
+commit;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
