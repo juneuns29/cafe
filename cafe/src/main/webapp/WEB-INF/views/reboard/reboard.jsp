@@ -31,18 +31,25 @@
 			case 'join':
 				path = '/cafe/member/join.cafe';
 				break;
-			case 'write':
-				path = '/cafe/reboard/reboardWrite.cafe';
-				break;
 			}
 			
 			$(location).attr('href', path);
+		});
+		
+		$('#write').click(function(){
+			var path = '/cafe/reboard/reboardWrite.cafe';
+			$('#frm').attr('action', path);
+			$('#frm').submit();
 		});
 		
 	});
 </script>
 </head>
 <body>
+	<form method="POST" id="frm" name="frm">
+		<input type="hidden" name="nowPage" value="${PAGE.nowPage}">
+	</form>
+	
 	<div class="w3-content mxw700">
 		<h1 class="w3-blue w3-padding w3-card-4 w3-center">댓글 게시판</h1>
 		<!-- 버튼 태그 -->
@@ -59,6 +66,7 @@
 		</div>
 		
 		<!-- 게시글 태그 -->
+<c:if test="${not empty LIST}">
 		<div class="w3-col w3-margin-top">
 <c:forEach var="DATA" items="${LIST}">
 			<div class="w3-col w3-margin-top"  style="padding-left: ${(DATA.level - 1) * 50}px;">
@@ -87,6 +95,47 @@
 </c:forEach>
 			
 		</div>
+		
+		<!-- 페이지 처리 -->
+		<div class="w3-col w3-center w3-margin-top">
+			<div class="w3-bar w3-border w3-border w3-border-blue w3-round">
+<c:if test="${PAGE.startPage eq 1}">
+				<span class="w3-bar-item w3-pale-blue">&laquo;</span>
+</c:if>
+<c:if test="${PAGE.startPage ne 1}">
+				<span class="w3-bar-item w3-btn w3-hover-blue pageBtn" 
+													id="${PAGE.startPage - 1}">&laquo;</span>
+</c:if>
+<c:forEach var="pno" begin="${PAGE.startPage}" end="${PAGE.endPage}">
+	<c:if test="${PAGE.nowPage eq pno}"><!-- 현재 보고있는 페이지인 경우 -->
+				<span class="w3-bar-item w3-btn w3-pink w3-hover-blue pageBtn" 
+																id="${pno}">${pno}</span>
+	</c:if>
+	<c:if test="${PAGE.nowPage ne pno}">
+				<span class="w3-bar-item w3-btn w3-hover-blue pageBtn" 
+																id="${pno}">${pno}</span>
+	</c:if>
+</c:forEach>
+<c:if test="${PAGE.endPage ne PAGE.totalPage}">
+				<span class="w3-bar-item w3-btn w3-hover-blue pageBtn" 
+													id="${PAGE.endPage + 1}">&raquo;</span>
+</c:if>
+<c:if test="${PAGE.endPage eq PAGE.totalPage}">
+				<span class="w3-bar-item w3-pale-blue">&raquo;</span>
+</c:if>
+			</div>
+		</div>
+		
+</c:if>
+
+<!-- 리스트가 비어있지 않은 경우 방명록 리스트 조건처리 닫는 태그 -->
+<c:if test="${empty LIST}">
+			<div class="w3-col w3-border-bottom w3-margin-top">
+				<h3 class="w3-center w3-text-gray">* 아직 작성된 글이 없습니다. *</h3>
+			</div>
+</c:if>
+		</div>
+		
 	</div>
 </body>
 </html>

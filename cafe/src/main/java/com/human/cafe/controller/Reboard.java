@@ -28,13 +28,17 @@ import com.human.cafe.vo.ReboardVO;
 public class Reboard {
 	
 	@RequestMapping("/reboard.cafe")
-	public ModelAndView reboardList(HttpSession session, ModelAndView mv, RedirectView rv, PageUtil page) {
+	public ModelAndView reboardList(HttpSession session, ModelAndView mv, 
+											RedirectView rv, PageUtil page) {
+		
+		mv.addObject("PAGE", page);
 		mv.setViewName("reboard/reboard");
 		return mv;
 	}
 	
 	@RequestMapping("/reboardWrite.cafe")
-	public ModelAndView reboardWrite(HttpSession session, ModelAndView mv, RedirectView rv, ReboardVO rVO, String nowPage) {
+	public ModelAndView reboardWrite(HttpSession session, ModelAndView mv, 
+											RedirectView rv, ReboardVO rVO, String nowPage) {
 		
 		mv.addObject("NOWPAGE", nowPage);
 		mv.addObject("DATA", rVO);
