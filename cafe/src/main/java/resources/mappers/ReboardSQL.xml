@@ -12,7 +12,13 @@
 		    	rebno, writer, body, reupno, regroup, relevel
 		    )
 		VALUES(
-		    #{bno}, #{id}, #{body}, #{upno}||#{bno}, 
+		    #{bno}, #{id}, #{body}, 
+		    <if test="upno neq null">
+			    #{upno}|| '#' || #{bno}, 
+		    </if>
+		    <if test="upno eq null">
+			    '#' || #{bno}, 
+		    </if>
 			<if test="regroup eq 0">
 			    #{bno},
 			</if>
